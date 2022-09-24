@@ -14,6 +14,8 @@ class trainController extends Controller
     }
 
     public function today(){
-        return view('trains.today');
+        $today = date('Y-m-d');
+        $trains = Train::where('date', $today)->get();
+        return view('trains.today',compact('trains'));
     }
 }
