@@ -3,30 +3,40 @@
 @section('content')
 <h1>All Trains</h1>
 <div class="row">
-    {{-- <table class="table table-striped table-dark">
+    <table class="table table-info ">
         <thead>
           <tr>
-            <th scope="col">#</th>
-            <th scope="col">Title</th>
-            <th scope="col">Original Title</th>
-            <th scope="col">Nationality</th>
-            <th scope="col">Relase date</th>
-            <th scope="col">Rating</th>
+            <th scope="col">train code</th>
+            <th scope="col">company</th>
+            <th scope="col">from</th>
+            <th scope="col">to</th>
+            <th scope="col">departing time</th>
+            <th scope="col">arriving time</th>
+            <th scope="col">coaches</th>
+            <th scope="col">status</th>
           </tr>
         </thead>
         <tbody>
-        @foreach($movies as $movie)
-          <tr>
-            <th scope="row">{{$movie['id']}}</th>
-            <td>{{$movie['title']}}</td>
-            <td>{{$movie['original_title']}}</td>
-            <td>{{$movie['nationality']}}</td>
-            <td>{{$movie['date']}}</td>
-            <td>{{$movie['vote']}}</td>
-          </tr>
+          @foreach($trains as $train)
+            <tr>
+              <th scope="row">{{$train['train_code']}}</th>
+              <td>{{$train['company']}}</td>
+              <td>{{$train['departing_station']}}</td>
+              <td>{{$train['arriving_station']}}</td>
+              <td>{{$train['departing_time']}}</td>
+              <td>{{$train['arriving_time']}}</td>
+              <td>{{$train['carriges']}}</td>
+              @if($train['is_cancelled'])
+                <td class="text-danger fw-bold">DELETED</td>
+              @elseif(!$train['is_on_time'])
+                <td class="text-warning fw-bold">LATE</td>
+              @else
+                <td class="text-success fw-bold">ON TIME</td>
+              @endif
+            </tr>
           @endforeach
         </tbody>
-      </table> --}}
+      </table>
 </div>
 
 @endsection
